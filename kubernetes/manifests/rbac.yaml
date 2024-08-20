@@ -27,12 +27,4 @@ subjects:
 - kind: ServiceAccount
   name: jenkins-admin
   namespace: devops-tools
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: sa-token-secret
-  namespace: devops-tools
-  annotations:
-    kubernetes.io/service-account.name: jenkins-admin
-type: kubernetes.io/service-account-token
+
