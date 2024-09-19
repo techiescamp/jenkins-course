@@ -21,7 +21,7 @@ pipeline {
             steps {
                 container('terraform') {
                     script {
-                        tfLint('ec2')
+                        tfLint('pipelines/project-02/ec2')
                     }
                 }
             }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 container('terraform') {
                     script {
-                        terraform.init('ec2', 'terraform-state-techiescamp', 'jenkins/terraform.tfstate', 'us-west-2')
+                        terraform.init('pipelines/project-02/ec2', 'terraform-state-techiescamp', 'jenkins/terraform.tfstate', 'us-west-2')
                     }
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 container('terraform') {
                     script {
-                        checkovScan('ec2')
+                        checkovScan('pipelines/project-02/ec2')
                     }
                 }
             }
@@ -54,7 +54,7 @@ pipeline {
             steps {
                 container('terraform') {
                     script {
-                        terraform.plan('ec2')
+                        terraform.plan('pipelines/project-02/ec2')
                     }
                 }
             }
@@ -72,9 +72,9 @@ pipeline {
                 container('terraform') {
                     script {
                         if (params.ACTION == 'apply') {
-                            terraform.apply('ec2')
+                            terraform.apply('pipelines/project-02/ec2')
                         } else if (params.ACTION == 'destroy') {
-                            terraform.destroy('ec2')
+                            terraform.destroy('pipelines/project-02/ec2')
                         }
                     }
                 }
